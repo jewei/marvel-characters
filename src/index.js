@@ -1,5 +1,6 @@
-var characterNames = require('./characters.json');
-var uniqueRandomArray = require('unique-random-array');
+import characterNames from './characters.json';
+import uniqueRandomArray from 'unique-random-array';
+
 var getRandomItem = uniqueRandomArray(characterNames);
 
 module.exports = {

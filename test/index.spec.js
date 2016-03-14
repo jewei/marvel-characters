@@ -1,5 +1,5 @@
-var expect = require('chai').expect;
-var marvel = require('./index');
+import { expect } from 'chai';
+import marvel from './../src/index';
 
 describe('marvel-comics-characters', function() {
   describe('all', function() {

@@ -2,14 +2,18 @@
   "name": "marvel-comics-characters",
   "version": "0.0.0-semantically-released",
   "description": "Get random Marvel heroes or villains.",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "babel src -d dist",
+    "postbuild": "cp src/characters.json dist/characters.json",
     "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "clean": "rimraf dist coverage",
     "commit": "git-cz",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test": "mocha src/index.test.js -w",
-    "test:single": "istanbul cover -x *.test.js _mocha -- -R spec src/index.test.js"
+    "start": "npm run test",
+    "test": "mocha test/index.spec.js -w --compilers js:babel-register",
+    "test:single": "babel-node ./node_modules/.bin/isparta cover --report lcov --report html _mocha -- --compilers js:babel-register test"
   },
   "repository": {
     "type": "git",
@@ -31,13 +35,19 @@
     "unique-random-array": "1.0.0"
   },
   "devDependencies": {
+    "babel-cli": "6.6.5",
+    "babel-polyfill": "6.7.2",
+    "babel-preset-airbnb": "1.1.1",
+    "babel-register": "6.7.2",
     "chai": "3.5.0",
     "codecov.io": "0.1.6",
     "commitizen": "2.7.2",
     "cz-conventional-changelog": "1.1.5",
     "ghooks": "1.0.3",
+    "isparta": "4.0.0",
     "istanbul": "0.4.2",
     "mocha": "2.4.5",
+    "rimraf": "2.5.2",
     "semantic-release": "4.3.5"
   },
   "config": {
