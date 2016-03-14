@@ -1,19 +1,18 @@
 {
   "name": "marvel-comics-characters",
-  "version": "0.0.0-semantically-released",
   "description": "Get random Marvel heroes or villains.",
   "main": "dist/index.js",
   "scripts": {
     "build": "babel src -d dist",
     "postbuild": "cp src/characters.json dist/characters.json",
-    "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "check-coverage": "babel-node ./node_modules/.bin/babel-istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "clean": "rimraf dist coverage",
     "commit": "git-cz",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "npm run test",
     "test": "mocha test/index.spec.js -w --compilers js:babel-register",
-    "test:single": "babel-node ./node_modules/.bin/isparta cover --report lcov --report html _mocha -- --compilers js:babel-register test"
+    "test:single": "babel-node ./node_modules/.bin/babel-istanbul cover _mocha -- -R spec test/index.spec.js"
   },
   "repository": {
     "type": "git",
@@ -44,8 +43,6 @@
     "commitizen": "2.7.2",
     "cz-conventional-changelog": "1.1.5",
     "ghooks": "1.0.3",
-    "isparta": "4.0.0",
-    "istanbul": "0.4.2",
     "mocha": "2.4.5",
     "rimraf": "2.5.2",
     "semantic-release": "4.3.5"
