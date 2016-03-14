@@ -1,5 +1,6 @@
 {
   "name": "marvel-comics-characters",
+  "version": "0.0.0-semantically-released",
   "description": "Get random Marvel heroes or villains.",
   "main": "dist/index.js",
   "scripts": {
